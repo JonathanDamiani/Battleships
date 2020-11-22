@@ -1,0 +1,19 @@
+/* Copyright (C) 2020, Jonathan Dean de Melo Damiani, All Rights Reserved */
+/* Menu Styles */
+
+.menu-screen {
+    z-index: 18;
+}
+
+/* Menu Buttons */
+.menu-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* Style for div with information from menu */
+.menu-screen-info {
+    width: 400px;
+}

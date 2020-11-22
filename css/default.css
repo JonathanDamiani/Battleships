@@ -1,0 +1,76 @@
+/* Copyright (C) 2020, Jonathan Dean de Melo Damiani, All Rights Reserved */
+/* Set defaul values */
+
+/* Removing margin and paddings from all elements as default, and including
+the box-sizing in order to the elements maintain the same width, independent
+of the borders.
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Set the values of default font size in order to use 1em = 16px */
+body {
+    font-size: 15px;
+    position: relative;
+    background-color:#222222;
+}
+
+/* Fonts styles */
+h1, h2, h3, h4, h5, h6 {
+    color:#DDDDDD;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 3em;
+    font-family: Cambria, Cochin, Times, 'Times New Roman', serif;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+h2 {
+    font-size: 2.5em;
+}
+
+h3 {
+    font-size: 1.5em;
+}
+
+h4 {
+    font-size: 1em;
+}
+
+p {
+    color: #DDDDDD;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+    color: #DDDDDD;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+}
+
+a:hover {
+   text-decoration: none;
+}
+
+/* Basic settings for the tables */
+td {
+    width: 2em;
+    height: 2em;
+    position: relative;
+    background-color: #000064;
+    border: 2px solid #DDDDDD;
+}
+
+th {
+    width: 2em;
+    height: 2em;
+    color: #DDDDDD;
+}

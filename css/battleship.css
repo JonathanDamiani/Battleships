@@ -1,0 +1,47 @@
+/* Copyright (C) 2020, Jonathan Dean de Melo Damiani, All Rights Reserved */
+/* Battlefield Styles */
+
+.battleship {
+    width: 400%;
+    height: 60%;
+    position: absolute;
+    top: 20%;
+    left: 4px;
+    z-index: 7;
+    border: 1px solid white;
+    border-top-left-radius: 40%;
+    border-bottom-left-radius: 40%;
+}
+
+.battleship::after {
+    content: "";
+    width: 90%;
+    height: 70%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #dddddd;
+    border-bottom-left-radius: 50%;
+    border-top-left-radius: 50%;
+}
+
+.battleship::before {
+    content: "";
+    width: 10%;
+    height: 30%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+
+/* Class to rotate the ship to put it on vertical position */
+.rotate-battleship {
+    top: -20%;
+    left: 50%;
+    transform-origin:center left;
+    transform: rotate(90deg);
+}

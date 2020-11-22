@@ -1,0 +1,32 @@
+/* Copyright (C) 2020, Jonathan Dean de Melo Damiani, All Rights Reserved */
+/* Submarine Styles */
+
+.submarine {
+    width: 180%;
+    height: 40%;
+    position: absolute;
+    top: 30%;
+    left: 4px;
+    z-index: 4;
+    border: 1px solid white;
+    border-radius: 100%;
+}
+
+.submarine::before {
+    width: 30%;
+    height: 50%;
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+
+/* Class to rotate the ship to put it on vertical position */
+.rotate-submarine {
+    top: -5%;
+    left: 50%;
+    transform-origin:center left;
+    transform: rotate(90deg);
+}

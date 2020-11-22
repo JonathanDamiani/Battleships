@@ -1,0 +1,28 @@
+/* Copyright (C) 2020, Jonathan Dean de Melo Damiani, All Rights Reserved */
+/* Loading style */
+
+/* Draw loading using borders */
+.loading-screen {
+    z-index: 19;
+}
+
+.loading-spinner {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 10px solid #DDDDDD;
+    border-top: 10px solid #555555;
+    border-bottom: 10px solid #555555;
+    animation: spinner 1s linear infinite;
+}
+
+/* Make the loading spin */
+@keyframes spinner {
+    0% { 
+        transform: rotate(0deg); 
+    }
+
+    100% { 
+        transform: rotate(360deg); 
+    }
+}

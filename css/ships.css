@@ -1,0 +1,96 @@
+/* Copyright (C) 2020, Jonathan Dean de Melo Damiani, All Rights Reserved */
+/* Default styles used for the ships */
+
+/* Colors for the ships */
+.ship-color-p1 {
+    background-color: green;
+}
+
+.ship-color-p1::after {
+    background-color: darkgreen;
+}
+
+.ship-color-p1::before, .ship-color-p2::before  {
+    background-color: #dddddd;
+}
+
+.ship-color-p2 {
+    background-color: orange;
+}
+
+.ship-color-p2::after {
+    background-color: darkorange;
+}
+
+/* Class for when the player miss the shoot */
+.miss-shoot {
+    background-color: rgba(0, 0, 200, 0.9);
+}
+
+/* Handle for drag ships */
+.ship-handle-drag {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.hide-ship {
+    display: none;
+}
+
+/* Style for when the player hit some ship */
+.hit-shoot {
+    background-color: rgba(200, 0, 0, 0.5);
+    position: relative;
+    z-index: 10;
+}
+
+/* Drawing X for the box the player hit some ship */
+.hit-shoot::before {
+    content: " ";
+    position: absolute;
+    z-index: 15;
+    width: 100%;
+    height: 10%;
+    top: 50%;
+    left: 50%;
+    background-color: black;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.hit-shoot::after {
+    content: " ";
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    height: 10%;
+    top: 50%;
+    left: 50%;
+    background-color: black;
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.ship-animation {
+    /* animation: float 6s ease-in-out infinite; */
+    z-index: 10;
+}
+
+@keyframes float {
+	0% {
+		transform: translate(0px, -3px);
+    }
+    25% {
+        transform: translate(4px, 1px);
+    }
+	50% {
+		transform: translate(0px, -3px);
+    }
+    75% {
+        transform: translate(4px, 1px);
+    }
+	100% {
+		transform: translate(0px, -3px);
+	}
+}

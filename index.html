@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+    <!-- Copyright (C) 2020, Jonathan Dean de Melo Damiani, All Rights Reserved -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Battleship</title>
+
+        <!-- Importing css -->
+        <link rel="stylesheet" href="./css/default.css">
+        <link rel="stylesheet" href="./css/main.css">
+        <link rel="stylesheet" href="./css/loading.css">
+        <link rel="stylesheet" href="./css/menu.css">
+        <link rel="stylesheet" href="./css/game-screen.css">
+        <link rel="stylesheet" href="./css/rules.css">
+        <link rel="stylesheet" href="./css/side-menu.css">
+        <link rel="stylesheet" href="./css/ships.css">
+        <link rel="stylesheet" href="./css/aircraft-carrier.css">
+        <link rel="stylesheet" href="./css/battleship.css">
+        <link rel="stylesheet" href="./css/destroyer.css">
+        <link rel="stylesheet" href="./css/cruiser.css">
+        <link rel="stylesheet" href="./css/submarine.css">
+
+        <!-- Importing jquery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>    
+        <!-- Jquery ui -->
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+        <!-- Puglin to work with cookies -->
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
+        <!-- Including buzz.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/buzz/1.2.1/buzz.min.js"></script>
+        <!-- Every sound effect  is from https://freesound.org/ 
+            and only sounds with Creative commmons 0 https://creativecommons.org/publicdomain/zero/1.0/
+        -->
+    </head>
+
+    <body>
+
+        <!-- Splash screen -->
+        <section id="splash-screen" class="screen-layout screen-bg-full screen-center-position splash-screen">
+            <h1>
+                battleship
+            </h1>
+        </section>
+
+        <!-- Loading -->
+        <section id="loading" class="screen-layout screen-bg-opacity screen-center-position loading-screen hide-screen">
+            <div class="loading-spinner"></div>
+        </section>
+        
+        <!-- Menu Screen -->
+        <section id="menu-screen" class="screen-layout screen-bg-full screen-center-position menu-screen">
+            <div class="menu-screen-info">
+                <h2>battleship</h2>
+                <div class="menu-buttons">
+                    <button id="start-game-menu-btn" class="btn-primary">Start Game</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Main Game Screen -->
+        <section id="game-screen" class="screen-layout screen-bg-full game-screen">
+
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <h2>battleship</h2>
+
+                <!-- Side Menu -->
+                <!-- TODO: Rewrite using javascript in order to behavior correctly-->
+                <div id="side-menu-btn" class="side-menu-button">
+                    <div class="menu-icon"></div>
+                </div>
+
+                <!-- Side Menu -->
+                <aside id="side-menu" class="side-menu">
+                    <div class="options">
+                        <button class="btn-primary btn-restart">Restart</button>
+                        <button id="rules-btn" class="btn-primary">Rules</button>
+                    </div>
+                    <div class="options">
+                        <p>High Score: <span id="high-score">0</span></p>
+                        <a target="_blank" href="https://www.linkedin.com/in/jonathan-dean-de-melo-damiani-638b74142/" class="about">About Creator</a>
+                    </div>
+                </aside>
+            </div>
+       
+            <!-- Game Container -->
+            <div class="game-container">
+
+                <!-- Player Field Left Side -->
+                <div class="field player-field">
+
+                    <h3>
+                        Player Field
+                    </h3>
+
+                    <!-- Grid for the game -->
+                    <!-- Grid created with Javascript -->
+                    <div id="game-table" class="game-table-container">
+                    </div>
+
+                    <!-- Player information including the boats, score e number of shoots -->
+                    <div class="player-info">
+                        <h4>
+                            Battleships
+                        </h4>
+                        <p>Place the ships than hit start to play</p>
+                        <!-- Table with ships of the player -->
+                        <div class="player-ships-table-container">
+                            <table>
+                                <tr>
+                                    <th scope="row">Aircraft Carrier</th>
+                                    <td id="aircraft-carrier-initial-position">
+                                        <div id="aircraft-carrier" class="ship-handle-drag ship-animation" data-size="5">
+                                            <div class="aircraft-carrier ship-color-p1"></div>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Battleship</th>
+                                    <td id="battleship-initial-position">
+                                        <div id="battleship" class="ship-handle-drag ship-animation" data-size="4">
+                                            <div class="battleship ship-color-p1"></div>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Cruiser</th>
+                                    <td id="cruiser-initial-position">
+                                        <div id="cruiser" class="ship-handle-drag ship-animation" data-size="4">
+                                            <div class="cruiser ship-color-p1"></div>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Destroyer</th>
+                                    <td id="destroyer-initial-position">
+                                        <div id="destroyer" class="ship-handle-drag ship-animation" data-size="3">
+                                            <div class="destroyer ship-color-p1"></div>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Submarine</th>
+                                    <td id="submarine-initial-position">
+                                        <div id="submarine" class="ship-handle-drag ship-animation" data-size="2">
+                                            <div class="submarine ship-color-p1"></div>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                            <button id="start-game-btn" class="btn-primary">Start Game</button>
+                        </div>
+
+                        <!-- Div with informations of score and shoots -->
+                        <div class="score-and-shoots">
+                            <p>
+                                SCORE: <span id="score-number">0</span>
+                            </p>
+                            <p>
+                                SHOOTS LEFT: <span id="number-of-shoots">100</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Player 2 / Enemy Field Right Side --> 
+                <!-- TODO: change informations according with the player choice of single player or multiplayer -->
+                <div class="field enemy-field">
+                    <h3>Enemy field</h3>
+
+                    <!-- Grid for the game -->
+                    <div id="game-table-enemy" class="game-table-container">
+                    </div>
+
+                    <!-- Player information including the boats, score e number of shoots, rigth side-->
+                    <!-- TODO: change informations according with the player choice of single player or multiplayer -->
+                    <div class="player-info">
+                        <h4>
+                            Battleships
+                        </h4>
+                        <div class="player-ships-table-container">
+                            <table>
+                                <tr>
+                                    <th scope="row">Aircraft Carrier</th>
+                                    <td id="aircraft-carrier-p2-initial-position">
+                                        <div id="aircraft-carrier-p2" class="ship-handle-drag">
+                                            <div class="aircraft-carrier ship-color-p2"></div>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Battleship</th>
+                                    <td id="battleship-p2-initial-position">
+                                        <div id="battleship-p2" class="ship-handle-drag">
+                                            <div class="battleship ship-color-p2"></div>
+                                        </div>  
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Cruiser</th>
+                                    <td id="cruiser-p2-initial-position">
+                                        <div id="cruiser-p2" class="ship-handle-drag">
+                                            <div class="cruiser ship-color-p2"></div>
+                                        </div> 
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Destroyer</th>
+                                    <td id="destroyer-p2-initial-position">
+                                        <div id="destroyer-p2" class="ship-handle-drag">
+                                            <div class="destroyer ship-color-p2"></div>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Submarine</th>
+                                    <td id="submarine-p2-initial-position">
+                                        <div id="submarine-p2" class="ship-handle-drag">
+                                            <div class="submarine ship-color-p2"></div>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <footer class="footer">
+                <p>
+                    Copyright &copy; 2020, Jonathan Dean Damiani
+                </p> 
+            </footer>
+        </section>
+
+        <!-- Rules Screen -->
+        <!-- Change it to a modal with javascript -->
+        <section id="rules-screen" class="js-assist-screen screen-layout screen-bg-opacity screen-center-position rules-screen hide-screen">
+            <div class="rules-box">
+                <h3>RULES</h3>
+                <button class="btn-close"></button>
+                <!-- Rules list -->
+                <ol>
+                    <li>
+                        Each player have 5 ships.
+                    </li>
+                    <li>
+                        Each player need to place the their ships in their own board.
+                    </li>
+                    <li>
+                        The ships can only be placed vertically or horizontally and not
+                        stay off the board.
+                    </li>
+                    <li>
+                        If in multiplayer, after the first player place his ships.
+                        They will be hidden, and the second player can play his ships.
+                    </li>
+                    <li>
+                        When the games begins the each player have his own turn and need to
+                        guess by clicking on his enemy grid where they think there is a ship.
+                    </li>
+                    <li>
+                        If the player miss the shoot the water become lighter blue.
+                    </li>
+                    <li>
+                        If the player hit the ship, the water become red.
+                    </li>
+                    <li>
+                        After hitting all the places the ship is, it is destroyed.
+                    </li>
+                    <li>
+                        The first player that destroy all enemies ships wins.
+                    </li>   
+                </ol>
+            </div>
+        </section>
+
+        <!-- Victory Screen -->
+        <section class="screen-layout js-assist-screen screen-bg-opacity screen-center-position victory-screen hide-screen">
+            <div class="message-box">
+                <button class="btn-close btn-restart"></button>
+                <h3>YOU HAVE WON</h3>
+            </div>
+        </section>
+
+        <!-- Defeat Screen -->
+        <section class="screen-layout js-assist-screen screen-bg-opacity screen-center-position defeat-screen hide-screen">
+            <div class="message-box">
+                <button class="btn-close btn-restart"></button>
+                <div>
+                    <h3>YOU HAVE LOST</h3>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Impoting scripts -->
+        <script type="module" src="./scripts/game.js"></script>
+    </body>
+</html>

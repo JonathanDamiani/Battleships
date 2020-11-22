@@ -1,0 +1,112 @@
+/* Copyright (C) 2020, Jonathan Dean de Melo Damiani, All Rights Reserved */
+/* Side menu Styles */
+
+/* Side menu button */
+.side-menu-button {
+    height: 50px;
+    width: 50px;
+    padding: 5px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    top: 0;
+    right: 20px;
+    cursor: pointer;
+}
+
+/* Menu icon */
+.menu-icon {
+    background-color: #dddddd;
+    position: relative;
+    width: 40px;
+    height: 4px;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.side-menu-button::after, .side-menu-button::before {
+    content: '';
+    display: block;
+    position: absolute;
+    background-color: #dddddd;
+    width: 40px;
+    height: 4px;
+    border-radius: 10px;
+}
+
+.side-menu-button::after {
+    top: 25%;
+    transition: all 0.3s;
+}
+
+.side-menu-button::before {
+    bottom: 25%;
+}
+
+/* Menu icon animation */
+.side-menu-button--open:after {
+    top: 47%;
+    transform: rotate(45deg);
+    transition: all 0.3s;
+}
+
+.side-menu-button--open .menu-icon {
+    transform: rotate(-45deg);
+    transition: all 0.3s;
+}
+
+.side-menu-button--open:before {
+    display: none;
+}
+
+/* Side menu box styles */
+.side-menu {
+    width: 0;
+    min-width: 0;
+    height: 50vh;
+    padding-top: 20px;
+    position: absolute;
+    overflow: hidden;
+    background-color:#222222;
+    top: 50px;
+    right: 0;
+    z-index: 15;
+    transition: all 0.3s;
+}
+
+.side-menu > .btn-primary {
+    width: 90%;
+}
+
+/* Side menu transition and animations */
+.side-menu:hover {
+    width: 20vw;
+    border-bottom: 2px solid #dddddd;
+    border-left: 2px solid #dddddd;
+    padding: 20px;
+}
+
+.side-menu--open {
+    width: 20vw;
+    padding: 20px;
+    transition: all 0.3s;
+    border-bottom: 2px solid #dddddd;
+    border-left: 2px solid #dddddd;
+}
+
+/* Options inside menu */
+.options {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.options:first-child {
+    border-bottom: 2px solid #dddddd;
+}
+
+.options > p {
+    font-size: 20px;
+}

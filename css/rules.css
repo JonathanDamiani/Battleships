@@ -1,0 +1,20 @@
+/* Copyright (C) 2020, Jonathan Dean de Melo Damiani, All Rights Reserved */
+/* Styles for the rules screen */
+
+.rules-screen {
+    z-index: 20;
+}
+/* Rules box position */
+.rules-box {
+    position: relative;
+    padding: 40px;
+    background-color: #222222;
+    border: 2px solid #dddddd;
+    border-radius: 10px;
+}
+
+/* Rules text */
+.rules-box ol {
+    color: #dddddd;
+    font-size: 1.3em;
+}

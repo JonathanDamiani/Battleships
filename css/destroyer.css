@@ -1,0 +1,46 @@
+/* Copyright (C) 2020, Jonathan Dean de Melo Damiani, All Rights Reserved */
+/* Destroyer styles */
+
+.destroyer {
+    width: 280%;
+    height: 40%;
+    position: absolute;
+    top: 30%;
+    left: 4px;
+    z-index: 5;
+    border: 1px solid white;
+    border-bottom-left-radius: 40%;
+    border-top-left-radius: 40%;
+    border-bottom-right-radius: 20%;
+    border-top-right-radius: 20%;
+}
+
+.destroyer::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 10%;
+    transform: translateY(-50%);
+    width: 60%;
+    height: 40%;
+    border-bottom-left-radius: 50%;
+    border-top-left-radius: 50%;
+}
+
+.destroyer::before {
+    content: "";
+    width: 10%;
+    height: 30%;
+    position: absolute;
+    top: 50%;
+    left: 15%;
+    transform: translateY(-50%);
+}
+
+/* Class to rotate the ship to put it on vertical position */
+.rotate-destroyer {
+    top: 10%;
+    left: 50%;
+    transform-origin:center left;
+    transform: rotate(90deg);
+}
